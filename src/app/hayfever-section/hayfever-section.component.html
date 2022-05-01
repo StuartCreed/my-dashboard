@@ -4,8 +4,20 @@
   
 <div>
     <div>Input a new one here:</div>
-    <form>
-        <input type="text" name="hayfeverEntry" [(ngModel)]="hayfeverEntry"/>
+    <form (ngSubmit)="onSubmit()">
+        <input type="text" name="hayfeverEntry" [formControl]="hayfeverEntryControl"/>
         <button type="submit">Submit</button>
     </form>
 </div>
+
+<div *ngIf="loading">
+    Loading...
+  </div>
+  <div *ngIf="error">
+    Error :(
+  </div>
+  <div *ngIf="rates">
+    <div *ngFor="let rate of rates">
+      <p>{{ rate.currency }}: {{ rate.rate }}</p>
+    </div>
+  </div>
